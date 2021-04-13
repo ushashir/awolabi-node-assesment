@@ -25,7 +25,7 @@ const UserSchema = new Schema({
         default: Date.now
        
     },
-     dateOfBirth: {
+    dateOfBirth: {
         type: Date,
         required: true
        
