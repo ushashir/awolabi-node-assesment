@@ -7,14 +7,12 @@ const auth = require('../middleware/auth')
 const { check, validationResult } = require('express-validator');
 const User = require('../models/User');
 
-// @route   GET api/users
-// @desk    Get logged in user
-// access   Private
+// @route   GET api/users, Get logged in user - access   Private
 router.get('/', 
         auth, 
             async (req, res) => {
     try {
-        const user = await User.findById(req.user.id).select('-password');
+        const user = await User.findById(req.user.id).select('-password'); // -password implies we don't want to return password
         res.json(user);
     } catch (err) {
         console.error(err.message);
@@ -22,9 +20,7 @@ router.get('/',
     }
     });
 
-// @route   POST api/auth
-// @desk    Auth user and get token
-// access   Public
+// @route   POST api/auth @desk    Auth user and get token access   Public
 router.post(
     '/', 
     [
